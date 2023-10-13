@@ -1,11 +1,11 @@
-module "helm_addon" {
-  source = "../helm-addon"
-
-  helm_config   = local.helm_config
-  addon_context = var.addon_context
-
-  depends_on = [kubernetes_namespace_v1.this]
-}
+#module "helm_addon" {
+#  source = "../helm-addon"
+#
+#  helm_config   = local.helm_config
+#  addon_context = var.addon_context
+#
+#  depends_on = [kubernetes_namespace_v1.this]
+#}
 
 resource "kubernetes_namespace_v1" "this" {
   count = try(local.helm_config["create_namespace"], true) && local.helm_config["namespace"] != "kube-system" ? 1 : 0
