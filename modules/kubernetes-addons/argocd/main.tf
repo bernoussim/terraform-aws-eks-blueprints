@@ -109,8 +109,6 @@ resource "kubectl_manifest" "argocd_kustomize_application" {
       ignoreDifferences    = lookup(each.value, "ignoreDifferences", [])
     }
   )
-
-  depends_on = [module.helm_addon]
 }
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -133,5 +131,5 @@ resource "kubernetes_secret" "argocd_gitops" {
     url           = each.value.repo_url
   }
 
-  depends_on = [module.helm_addon]
+  #depends_on = [module.helm_addon]
 }
